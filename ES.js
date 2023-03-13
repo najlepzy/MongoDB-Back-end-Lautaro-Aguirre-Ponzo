@@ -86,6 +86,5 @@ products.forEach((product) => productManager.addProduct(product));
 console.log("===== Products =====");
 let allProducts = productManager.getProducts();
 console.log(allProducts);
-console.log("===== Products =====");
 let findProduct = productManager.getProductsById(1);
 console.log(findProduct);
