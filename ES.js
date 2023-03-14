@@ -86,5 +86,6 @@ products.forEach((product) => productManager.addProduct(product));
 console.log("===== Products =====");
 let allProducts = productManager.getProducts();
 console.log(allProducts);
+// findProduct works to place a value by parameter to be able to select the product ID
 let findProduct = productManager.getProductsById(1);
 console.log(findProduct);
