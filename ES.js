@@ -3,13 +3,13 @@ const fs = require("fs");
 // Exercise ProductManager.
 
 class ProductManager {
-  path; // La ruta del archivo de productos a generar.
+  path; // The route of archive of products to generate
   products; // Products.
 
   constructor(path) {
     this.path = path;
     this.products = [];
-    // Si no existe el archivo de productos, crearlo.
+    // If it doesn't exist the archive of products, create it.
     if (!fs.existsSync(this.path))
       fs.writeFile(this.path, this.products, (err) => {
         if (err) throw err;
@@ -26,9 +26,9 @@ class ProductManager {
   // Return all products.
   async getProducts() {
     await fs.readFile(this.path, "utf8", (err, data) => {
-      // Transformo el contenido JSON a variable en memoria.
+      // Transform the content JSON into a variable of memory.
       let data_archive = JSON.parse(data);
-      // Agregamos al array parseado con los datos cargados del archivo a this.products.
+      // Add the array parse with the data in the archive a "this.products"
       this.products = data_archive;
     });
     return this.products;
@@ -48,10 +48,10 @@ class ProductManager {
     this.getProducts();
     let updateProd= this.getProductsById(id);
     if (updateProd != null) {
-      // Obtiene las keys del objeto a actualizar, lo almaceno a keys array.
+      // Obtiene las keys del objeto a actualizar, lo almaceno a keys array. 
       const keys = Object.keys(new_data);
       keys.forEach((key) => {
-        producto_a_actualizar[key] = new_data[key];
+        update_the_product[key] = new_data[key];
       });
     }
   }
