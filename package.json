@@ -1,0 +1,24 @@
+{
+  "name": "primera-entrega-back-end---lautaro-aguirre-ponzo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "ProductManager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/najlepzy/Primera-entrega-Back-end-Lautaro-Aguirre-Ponzo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/najlepzy/Primera-entrega-Back-end-Lautaro-Aguirre-Ponzo/issues"
+  },
+  "homepage": "https://github.com/najlepzy/Primera-entrega-Back-end-Lautaro-Aguirre-Ponzo#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
