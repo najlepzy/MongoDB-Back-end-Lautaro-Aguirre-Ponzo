@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from "fs";
 
 // Exercise ProductManager.
 
@@ -72,7 +72,9 @@ class ProductManager {
     if (index_found > -1) {
       this.products.splice(index_found, 1);
       this.__writeToFile();
+      return true;
     }
+    return false;
   }
 }
 
