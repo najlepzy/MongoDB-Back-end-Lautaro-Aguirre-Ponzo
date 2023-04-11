@@ -1,6 +1,17 @@
+<div>
+  <form id="myForm" action="#">
+    <label for="text">Product Name:</label>
+    <input id="text" type="text">
+    <input onclick="submit()" type="submit"></input>
+  </form>
+</div>
 <ul>
   {{#each products}}
     <li>{{this.title}}</li>
     <img class="Products" src="{{this.thumbnail}}" alt="img-product">
   {{/each}}
 </ul>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+<script src="/public/JS/WebSocketClientProducts.js"></script>
+
+

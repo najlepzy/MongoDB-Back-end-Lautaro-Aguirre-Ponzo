@@ -7,7 +7,11 @@ const ProductsWebSocket = new Server(connectionInstance);
 const productManager = new ProductManager("products.json");
 
 ProductsWebSocket.on("connection", (client) => {
+  client.on("on_connect", (data) => {
+    console.log(data);
+  });
   client.on("create_product", (data) => {
+    console.log(data);
     productManager.addProduct(data);
     client.emit("create_ok", {
       code: "OK",
@@ -16,7 +20,7 @@ ProductsWebSocket.on("connection", (client) => {
   });
   client.on("delete_product", (data) => {
     let deleted = productManager.deleteProduct(parseInt(data));
-      client.emit("delete_ok", deleted);
+    client.emit("delete_ok", deleted);
   });
   client.on("disconnect", () => {
     console.log("Client disconnected");

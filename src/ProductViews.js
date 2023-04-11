@@ -8,5 +8,9 @@ ProductViews.get("/", (request, response) => {
   let products = productManager.getProducts();
   response.render("Home", { products: products, WindowTitle: "Products" });
 });
+ProductViews.get("/RealTimeProducts", (request, response) => {
+  let products = productManager.getProducts();
+  response.render("RealTimeProducts", { products: products, WindowTitle: "RealTimeProducts" });
+});
 
 export default ProductViews;

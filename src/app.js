@@ -14,7 +14,9 @@ app.set("views", "./views");
 /* Ending Handlebars */
 
 app.use(express.json());
-app.use(express.static("Assets"));
+/* css */
+app.use("/public", express.static("src/Assets"));
+/* css */
 app.use("/api/products", ProductEndPoint);
 app.use("/api/carts", cartEndPoint);
 app.use("/home", ProductViews);
