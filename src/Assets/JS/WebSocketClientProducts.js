@@ -12,5 +12,4 @@ Form.addEventListener("submit", function (event) {
   const textInput = document.getElementById("text").value;
   console.log(textInput);
   socket.emit("create_product", { title:textInput});
-  socket.emit("create_product", { title:textInput});
 });
