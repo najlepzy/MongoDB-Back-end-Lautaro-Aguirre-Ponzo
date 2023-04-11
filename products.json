@@ -98,16 +98,5 @@
         "status": true,
         "thumbnail": "https://http2.mlstatic.com/D_NQ_NP_891364-MLA45686629945_042021-O.webp",
         "price": 30000
-    },
-    {
-      "id": 11,
-      "title": "Placa De Video MSI rtx 4090",
-      "description": "Placa de Video RTX 4090 2022",
-      "stock": 2,
-      "code": "30635014C",
-      "status": true,
-      "thumbnail": "https://www.fullh4rd.com.ar/img/productos/Pics_Prod/video-geforce-rtx-3050-8gb-msi-gaming-x-0.jpg",
-      "price": 199000
     }
-    
 ]
