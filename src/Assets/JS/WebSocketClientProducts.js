@@ -18,14 +18,12 @@ form.addEventListener("submit", function (event) {
 });
 /* delete */
 const remove = document.getElementById("remove");
-form.addEventListener("remove", function (event) {
+remove.addEventListener("submit", function (event) {
   event.preventDefault();
   const textInput = document.getElementById("text").value;
-  socket.emit("delete_product", { product: product.id });
-  form.reset();
-  console.log("Removed");
+  console.log(textInput);
+  socket.emit("delete_product", { product: textInput });
+  remove.reset();
+  console.log("removed");
 });
 /* delete */
-
-
-
