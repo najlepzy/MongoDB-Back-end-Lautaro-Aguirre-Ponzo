@@ -15,12 +15,16 @@ form.addEventListener("submit", function (event) {
   socket.emit("create_product", { title: textInput });
   /* create */
   form.reset();
-  /* delete */
-  const deleteInput = document.getElementById("delete").id;
-  console.log(deleteInput);
-  socket.on("delete_product", (id) => {
-    let ID = productManager.deleteProduct(parseInt(id));
-    socket.emit("delete_product", ID);
-  });
-  /* delete */
 });
+
+/* delete */
+
+const deleteButton = document.getElementById("delete_button");
+deleteButton.onclick = function () {
+  const id = document.getElementById("product_id").value;
+
+  deleteProduct(id);
+};
+
+function deleteProduct(id) {}
+/* delete */

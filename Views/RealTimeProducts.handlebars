@@ -1,14 +1,16 @@
 <div>
   <form id="myForm" action="#">
-    <label for="text">Product Name:</label>
+    <label for="text">Add Product:</label>
     <input id="text" type="text">
     <input onclick="submit()" type="submit"></input>
-    <label for="text">Product ID:</label>
-    <input id="delete" type="text">
-    <input onclick="id" type="submit"></input>
-   
-  </form>
+   </form>
 </div>
+<div>
+  <p>Delete Product:</p>
+  <input id="product_id" type="text" value="{{product.id}}">
+  <button id="delete_button">Delete</button>
+</div>
+
 <ul>
   {{#each products}}
     <li>{{this.title}}</li>
