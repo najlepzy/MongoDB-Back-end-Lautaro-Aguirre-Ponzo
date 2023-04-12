@@ -6,10 +6,21 @@ socket.on("message", (data) => {
   console.log(data);
 });
 
-const Form = document.getElementById("myForm");
-Form.addEventListener("submit", function (event) {
+const form = document.getElementById("myForm");
+form.addEventListener("submit", function (event) {
   event.preventDefault();
   const textInput = document.getElementById("text").value;
   console.log(textInput);
-  socket.emit("create_product", { title:textInput});
+  /* create */
+  socket.emit("create_product", { title: textInput });
+  /* create */
+  form.reset();
+  /* delete */
+  const deleteInput = document.getElementById("delete").id;
+  console.log(deleteInput);
+  socket.on("delete_product", (id) => {
+    let ID = productManager.deleteProduct(parseInt(id));
+    socket.emit("delete_product", ID);
+  });
+  /* delete */
 });
