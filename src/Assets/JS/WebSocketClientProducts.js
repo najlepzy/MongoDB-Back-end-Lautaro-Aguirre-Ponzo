@@ -16,15 +16,16 @@ form.addEventListener("submit", function (event) {
   /* create */
   form.reset();
 });
-
+/* delete */
+const remove = document.getElementById("remove");
+form.addEventListener("remove", function (event) {
+  event.preventDefault();
+  const textInput = document.getElementById("text").value;
+  socket.emit("delete_product", { product: product.id });
+  form.reset();
+  console.log("Removed");
+});
 /* delete */
 
-const deleteButton = document.getElementById("delete_button");
-deleteButton.onclick = function () {
-  const id = document.getElementById("product_id").value;
 
-  deleteProduct(id);
-};
 
-function deleteProduct(id) {}
-/* delete */
