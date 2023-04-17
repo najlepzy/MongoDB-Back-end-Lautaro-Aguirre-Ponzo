@@ -1,8 +1,8 @@
 import express from "express";
-import ProductManager from "./ProductManager.js";
+import ProductManager from "../services/ProductManager.js";
 
 const ProductViews = express.Router();
-const productManager = new ProductManager("products.json");
+const productManager = new ProductManager("data/products.json");
 
 ProductViews.get("/", (request, response) => {
   let products = productManager.getProducts();

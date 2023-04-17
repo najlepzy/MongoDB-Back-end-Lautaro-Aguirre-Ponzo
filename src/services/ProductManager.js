@@ -33,6 +33,7 @@ class ProductManager {
         : this.products[this.products.length - 1].id + 1;
     this.products.push(product);
     this.__writeToFile();
+    return product;
   }
 
   // Return all products.

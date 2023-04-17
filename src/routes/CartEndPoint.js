@@ -1,8 +1,8 @@
 import express from "express";
-import CartManager from "./CartManager.js";
+import CartManager from "../services/CartManager.js";
 
 const cartEndPoint = express.Router();
-const cartManager = new CartManager("carts.json");
+const cartManager = new CartManager("data/carts.json");
 
 cartEndPoint.get("/", (request,response) => {
   response.send(cartManager.getCarts());

@@ -1,10 +1,10 @@
 import express from "express";
 import { Server } from "socket.io";
-import ProductManager from "./src/ProductManager.js";
+import ProductManager from "./src/services/ProductManager.js";
 import connectionInstance from "./src/app.js";
 
 const ProductsWebSocket = new Server(connectionInstance);
-const productManager = new ProductManager("products.json");
+const productManager = new ProductManager("data/products.json");
 
 ProductsWebSocket.on("connection", (client) => {
   client.on("on_connect", (data) => {
@@ -12,14 +12,15 @@ ProductsWebSocket.on("connection", (client) => {
   });
   client.on("create_product", (data) => {
     console.log(data);
-    productManager.addProduct(data);
+    let newProduct = productManager.addProduct(data);
     client.emit("create_ok", {
       code: "OK",
-      product: data,
+      product: newProduct,
     });
   });
   client.on("delete_product", (data) => {
-    let deleted = productManager.deleteProduct(parseInt(data));
+    console.log(data.product)
+    let deleted = productManager.deleteProduct(parseInt(data.product));
     client.emit("delete_ok", deleted);
   });
   client.on("disconnect", () => {
