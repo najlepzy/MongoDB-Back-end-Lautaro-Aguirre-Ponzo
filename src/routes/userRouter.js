@@ -17,7 +17,7 @@ userRouter.post("/", uploader.single("file"), (request, response) => {
   } else {
     console.log("File uploaded successfully.");
     let user = request.body;
-    user.profilePicture = request.file.path;
+    user.profile = request.file.path;
     users.push(user);
     response.status(200).send({
       status: "success",
