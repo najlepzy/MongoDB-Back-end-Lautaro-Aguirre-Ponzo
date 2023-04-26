@@ -5,11 +5,9 @@ import ProductEndPoint from "./routes/ProductEndPoint.js";
 import multerRouter from "./routes/multerRouter.js";
 import modelRouter from "./routes/ModelRouter.js";
 import handlebars from "express-handlebars";
-import dotenv from "dotenv";
 
 
 const port = 8081;
-dotenv.config().parsed;
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
