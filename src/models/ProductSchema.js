@@ -29,8 +29,8 @@ const productsModel = new mongoose.Schema({
   price: { type: Schema.Types.Number, require: true },
 });
 
-/* se agrega tercer parametro para especificar colleccion */
+/* third parameter is added to specify collection */
 const productSchema = mongoose.model(productsCollection, productsModel, "Products");
-/* se agrega tercer parametro para especificar colleccion */
+/* third parameter is added to specify collection */
 
 export default productSchema;
