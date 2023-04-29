@@ -1,10 +1,10 @@
 import express from "express";
 import { Server } from "socket.io";
-import ProductManager from "./src/services/ProductManager.js";
+import ProductManager from "./src/Dao/ProductManager.js";
 import connectionInstance from "./src/app.js";
 
 const ProductsWebSocket = new Server(connectionInstance);
-const productManager = new ProductManager("data/products.json");
+const productManager = new ProductManager();
 
 ProductsWebSocket.on("connection", (client) => {
   client.on("on_connect", (data) => {

@@ -1,24 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-import dotenv from "dotenv";
-
-const env = dotenv.config().parsed;
-/* Mongoose configuration vsc */
-
-await mongoose
-  .connect(env.URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("MongoDB Connected 🍕");
-  });
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function callback() {
-  console.log("CONNECTED");
-});
-
-/* Mongoose configuration vsc*/
+import { Schema } from "mongoose";
+import mongoose from "../../core/Connection.js"
 
 const productsCollection = "Products";
 

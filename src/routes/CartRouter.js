@@ -1,16 +1,16 @@
 import express from "express";
-import CartManager from "../services/CartManager.js";
+import CartManager from "../Dao/CartManager.js";
 
 const cartEndPoint = express.Router();
 const cartManager = new CartManager("data/carts.json");
 
-cartEndPoint.get("/", (request,response) => {
-  response.send(cartManager.getCarts());
+cartEndPoint.get("/", async (request, response) => {
+  response.send(await cartManager.getCarts());
 });
-cartEndPoint.post("/", (request,response) => {
+cartEndPoint.post("/", async (request,response) => {
   response.send(cartManager.addCart());
 });
-cartEndPoint.post("/:cartId/products/:pid", (request, response) => {
+cartEndPoint.post("/:cartId/products/:pid", async (request, response) => {
   cartManager.addProductToCart(parseInt(request.params.cartId),request.params.pid)
   response.send(true);
 });

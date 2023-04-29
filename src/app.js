@@ -1,9 +1,9 @@
 import express from "express";
-import cartEndPoint from "./routes/CartEndPoint.js";
+import cartRouter from "./routes/CartRouter.js";
 import ProductViews from "./routes/ProductViews.js";
 import ProductEndPoint from "./routes/ProductEndPoint.js";
-import multerRouter from "./routes/multerRouter.js";
-import modelRouter from "./routes/ModelRouter.js";
+import MulterRouter from "./routes/MulterRouter.js";
+import ProductsRouter from "./routes/ProductsRouter.js";
 import handlebars from "express-handlebars";
 
 
@@ -22,17 +22,15 @@ app.use(express.json());
 app.use("/public", express.static("public"));
 /* css */
 
-app.use("/api/products", ProductEndPoint);
-app.use("/api/carts", cartEndPoint);
+/* Mongoose Start*/
+app.use("/api/products", ProductsRouter);
+/* Mongoose End*/
+app.use("/api/carts", cartRouter);
 app.use("/home", ProductViews);
 
 /* Multer Start */
-app.use("/api/multer", multerRouter);
+app.use("/api/multer", MulterRouter);
 /* Multer End*/
-
-/* Mongoose Start*/
-app.use("/api/database", modelRouter);
-/* Mongoose End*/
 
 const connectionInstance = app.listen(port, () => {
   console.log(`Server is running on port 8081 ${port}`);
