@@ -1,6 +1,7 @@
 import productSchema from "./models/ProductSchema.js";
+import Manager from "../Dao/Manager.js";
 
-class ProductManager {
+class ProductManager extends Manager {
   // Add the product by parameter
   async addProduct(data) {
     let result = await productSchema.create(data);
@@ -8,8 +9,12 @@ class ProductManager {
   }
 
   // Return all products.
-  async getProducts() {
-    let products = await productSchema.find();
+  async getProducts(params) {
+    const sort = this.getSortFromParams(params);
+    const filter = this.getCleanFilters(params);
+    let products = [];
+    if (!sort) products = await productSchema.aggregate([{$match:filter}]);
+    else products = await productSchema.aggregate([{ $sort: sort, $match:filter }]);
     return products;
   }
 

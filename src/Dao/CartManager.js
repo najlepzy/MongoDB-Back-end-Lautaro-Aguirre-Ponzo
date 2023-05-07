@@ -3,18 +3,18 @@ import CartSchema from "./models/CartSchema.js";
 class CartManager {
   // Add the cart by parameter
   async addCart() {
-    let result = await cartSchema.create();
+    let result = await CartSchema.create();
     return result;
   }
 
   // Return all carts.
   async getCarts() {
-     let carts = await cartSchema.find();
+     let carts = await CartSchema.find();
     return carts;
   }
 
   async getCartsById(id) {
-   const result = await cartSchema.findOne({ _id: id });
+   const result = await CartSchema.findOne({ _id: id });
     if (!result) {
       console.log("Cart Not Found");
       return null;
@@ -32,7 +32,7 @@ class CartManager {
     else FoundProduct.quantity++;
     delete Found["id"];
     delete Found["_id"];
-    let result = await cartSchema.updateOne({ _id: id }, Found);
+    let result = await CartSchema.updateOne({ _id: id }, Found);
     return result;
   }
 }

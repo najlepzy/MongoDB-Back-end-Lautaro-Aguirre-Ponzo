@@ -7,14 +7,16 @@ const cartsModel = new mongoose.Schema({
   id: { type: Schema.Types.String, require: true },
   products: [
     {
-      id: { type: Schema.Types.String, require: true },
+      id: [{ type: Schema.Types.ObjectId, ref: "Products", default: []}],
       quantity: { type: Schema.Types.Number, require: true },
     },
   ],
 });
 
+/* cartsModel.pre("find", () => {this.populate(["Products"])}); */
+
 /* third parameter is added to specify collection */
-const cartSchema = mongoose.model(cartCollection, cartsModel, "Cart");
+const CartSchema = mongoose.model(cartCollection, cartsModel, "Carts");
 /* third parameter is added to specify collection */
 
-export default cartSchema;
+export default CartSchema;
