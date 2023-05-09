@@ -11,13 +11,14 @@ class ProductManager extends Manager {
   // Return all products.
   async getProducts(params) {
     const sort = this.getSortFromParams(params);
-    const filter = this.getCleanFilters(params);
+    const filter = this.getCleanFilters(productSchema.schema.paths, params);
+    const pageOffsets = this.getPaginationOffsets(parseInt(params.page))
     let products = [];
-    if (!sort) products = await productSchema.aggregate([{ $match: filter }]);
+    if (!sort) products = await productSchema.aggregate([{ $match: filter }]).skip(pageOffsets.skip).limit(pageOffsets.limit);
     else
       products = await productSchema.aggregate([
         { $sort: sort, $match: filter },
-      ]);
+      ]).skip(pageOffsets.skip).limit(pageOffsets.limit);
     return products;
   }
 

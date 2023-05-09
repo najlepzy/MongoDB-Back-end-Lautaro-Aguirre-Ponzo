@@ -1,8 +1,6 @@
 import express from "express";
 import cartRouter from "./routes/CartRouter.js";
 import ProductViews from "./routes/ProductViews.js";
-import ProductEndPoint from "./routes/ProductEndPoint.js";
-import MulterRouter from "./routes/MulterRouter.js";
 import ProductsRouter from "./routes/ProductsRouter.js";
 import handlebars from "express-handlebars";
 
@@ -29,7 +27,7 @@ app.use("/api/carts", cartRouter);
 app.use("/home", ProductViews);
 
 /* Multer Start */
-app.use("/api/multer", MulterRouter);
+// app.use("/api/multer", MulterRouter);
 /* Multer End*/
 
 const connectionInstance = app.listen(port, () => {
