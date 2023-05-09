@@ -13,8 +13,11 @@ class ProductManager extends Manager {
     const sort = this.getSortFromParams(params);
     const filter = this.getCleanFilters(params);
     let products = [];
-    if (!sort) products = await productSchema.aggregate([{$match:filter}]);
-    else products = await productSchema.aggregate([{ $sort: sort, $match:filter }]);
+    if (!sort) products = await productSchema.aggregate([{ $match: filter }]);
+    else
+      products = await productSchema.aggregate([
+        { $sort: sort, $match: filter },
+      ]);
     return products;
   }
 

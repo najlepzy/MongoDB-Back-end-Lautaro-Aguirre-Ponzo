@@ -1,22 +1,29 @@
 import { Schema } from "mongoose";
+
 import mongoose from "../../core/Connection.js";
 
 const cartCollection = "Carts";
 
 const cartsModel = new mongoose.Schema({
   id: { type: Schema.Types.String, require: true },
+
   products: [
     {
-      id: [{ type: Schema.Types.ObjectId, ref: "Products", default: []}],
+      _id: { type: Schema.Types.ObjectId, ref: "Products" },
+
       quantity: { type: Schema.Types.Number, require: true },
     },
   ],
 });
 
-/* cartsModel.pre("find", () => {this.populate(["Products"])}); */
+cartsModel.pre("find", function () {
+  this.populate("products._id");
+});
 
 /* third parameter is added to specify collection */
+
 const CartSchema = mongoose.model(cartCollection, cartsModel, "Carts");
+
 /* third parameter is added to specify collection */
 
 export default CartSchema;

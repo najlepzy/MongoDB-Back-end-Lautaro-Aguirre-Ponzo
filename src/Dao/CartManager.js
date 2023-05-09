@@ -21,11 +21,11 @@ class CartManager {
     }
     return result;
   }
-  async addProductToCart(cartId, ProductId) {
-    let Found = this.getCartsById(cartId);
+  async addProductToCart(id, ProductId) {
+    let Found = this.getCartsById(id);
     if (!Found) return false;
     let FoundProduct = Found.products.find(
-      (product) => product.id === ProductId
+      (product) => product.id === ProductId 
     );
     if (FoundProduct == null)
       Found.products.push({ id: ProductId, quantity: 1 });

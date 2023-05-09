@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 import mongoose from "../../core/Connection.js"
 
-const productsCollection = "Products";
+const productsCollection = "Products";  
 
 const productsModel = new mongoose.Schema({
   title: { type: Schema.Types.String, require: true, index:true },
