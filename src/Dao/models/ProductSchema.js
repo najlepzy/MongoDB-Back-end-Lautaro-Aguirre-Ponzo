@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import mongoose from "../../core/Connection.js"
+import mongoose from "../../core/Connection.js";
 
 const productsCollection = "Products";  
 

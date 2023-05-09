@@ -11,7 +11,7 @@
     response.send(cartManager.addCart());
   });
   cartEndPoint.post("/:cartId/products/:pid", async (request, response) => {
-    cartManager.addProductToCart(parseInt(request.params.cartId),request.params.pid)
+    cartManager.addProductToCart(request.params.pid, (request.params.cartId));
     response.send(true);
   });
 

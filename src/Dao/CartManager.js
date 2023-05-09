@@ -9,12 +9,12 @@ class CartManager {
 
   // Return all carts.
   async getCarts() {
-     let carts = await CartSchema.find();
+    let carts = await CartSchema.find();
     return carts;
   }
 
   async getCartsById(id) {
-   const result = await CartSchema.findOne({ _id: id });
+    const result = await CartSchema.findOne({ _id: id });
     if (!result) {
       console.log("Cart Not Found");
       return null;
@@ -25,7 +25,7 @@ class CartManager {
     let Found = this.getCartsById(id);
     if (!Found) return false;
     let FoundProduct = Found.products.find(
-      (product) => product.id === ProductId 
+      (product) => product.id === ProductId
     );
     if (FoundProduct == null)
       Found.products.push({ id: ProductId, quantity: 1 });
@@ -36,6 +36,5 @@ class CartManager {
     return result;
   }
 }
-
 
 export default CartManager;

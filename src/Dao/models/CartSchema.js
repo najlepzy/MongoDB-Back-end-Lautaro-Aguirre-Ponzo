@@ -1,5 +1,4 @@
 import { Schema } from "mongoose";
-
 import mongoose from "../../core/Connection.js";
 
 const cartCollection = "Carts";
