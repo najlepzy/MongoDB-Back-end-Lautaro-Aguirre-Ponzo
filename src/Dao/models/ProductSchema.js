@@ -1,5 +1,6 @@
 import { Schema } from "mongoose";
 import mongoose from "../../core/Connection.js";
+import mongoosePaginate from "mongoose-paginate-v2";
 
 const productsCollection = "Products";  
 
@@ -12,8 +13,18 @@ const productsModel = new mongoose.Schema({
 
 });
 
+productsModel.plugin(mongoosePaginate);
+
+const options = {
+  page: 1,
+  limit: 5
+};
+
+
 /* third parameter is added to specify collection */
 const productSchema = mongoose.model(productsCollection, productsModel, "Products");
 /* third parameter is added to specify collection */
-
+productSchema.paginate({}, options, (err, result) => {
+  console.log(result);
+});
 export default productSchema;
