@@ -12,14 +12,22 @@ class ProductManager extends Manager {
   async getProducts(params) {
     const sort = this.getSortFromParams(params);
     const filter = this.getCleanFilters(productSchema.schema.paths, params);
-    const pageOffsets = this.getPaginationOffsets(parseInt(params.page))
+    
     let products = [];
-    if (!sort) products = await productSchema.aggregate([{ $match: filter }]).skip(pageOffsets.skip).limit(pageOffsets.limit);
-    else
-      products = await productSchema.aggregate([
-        { $sort: sort, $match: filter },
-      ]).skip(pageOffsets.skip).limit(pageOffsets.limit);
-    return products;
+    if (!sort) {
+      products = await productSchema.aggregate([{ $match: filter }]);
+    } else {
+      products = await productSchema.aggregate([{ $match: filter }, { $sort: sort }]);
+    }
+  
+    const options = {
+      page: params.page || 1,
+      limit: params.limit || 5,
+      sort: sort
+    };
+    const result = await productSchema.paginate(filter, options);
+  
+    return result;
   }
 
   async getProductsById(id) {

@@ -1,7 +1,5 @@
 class Manager {
 
-  PAGINATION_SIZE = 5;
-
   getSortFromParams(params) {
     if (params["sort"] != undefined)
       return { price: params["sort"] == "asc" ? 1 : -1 };
@@ -24,13 +22,6 @@ class Manager {
         to_return[key] = params[key]
     })
     return to_return
-  }
-  getPaginationOffsets(pagenum){
-    if(!pagenum) pagenum=1
-    return {
-      'skip': (this.PAGINATION_SIZE * (pagenum-1)),
-      'limit': this.PAGINATION_SIZE
-    }
   }
 }
 export default Manager;
