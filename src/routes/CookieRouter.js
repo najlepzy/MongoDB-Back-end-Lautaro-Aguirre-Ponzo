@@ -2,7 +2,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import { Router } from "express";
 
-const encript = process.env.encript;    
+const encript = process.env.encript;
 const cookieRouter = Router();
 
 cookieRouter.use(cookieParser(encript));
@@ -10,6 +10,7 @@ cookieRouter.use(cookieParser(encript));
 cookieRouter.get("/", (request, response) => {
   response.send(request.signedCookies);
 });
+
 cookieRouter.get("/:key", (request, response) => {
   const { key } = request.params;
   const value = request.signedCookies[key];
@@ -22,6 +23,7 @@ cookieRouter.post("/", (request, response) => {
     .cookie(key, value, { maxAge, signed: true })
     .send({ key, value, maxAge });
 });
+
 cookieRouter.delete("/:key", (request, response) => {
   const { key } = request.params;
   response.clearCookie(key).send({ message: "Cookie Removed" });
