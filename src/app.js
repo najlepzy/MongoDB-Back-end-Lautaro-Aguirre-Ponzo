@@ -1,10 +1,12 @@
+import "./core/Connection.js";
 import express from "express";
+import session from "express-session";
 import cartRouter from "./routes/CartRouter.js";
 import ProductViews from "./routes/ProductViews.js";
 import ProductsRouter from "./routes/ProductsRouter.js";
 import cookieRouter from "./routes/CookieRouter.js";
+import userRouter from "./routes/userRouter.js";
 import sessionRouter from "./routes/SessionRouter.js";
-import "./core/Connection.js"
 import handlebars from "express-handlebars";
 
 

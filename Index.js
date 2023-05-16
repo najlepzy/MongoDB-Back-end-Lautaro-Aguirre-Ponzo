@@ -1,4 +1,8 @@
 import express from "express";
+import session from "express-session";
+import mongoose from "mongoose";
+import mongoStore from "connect-mongo";
+import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 import ProductManager from "./src/Dao/ProductManager.js";
 import connectionInstance from "./src/app.js";
