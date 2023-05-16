@@ -1,5 +1,6 @@
 import cookieParser from "cookie-parser";
 import express from "express";
+import session from "express-session";
 import { Router } from "express";
 
 const encript = process.env.encript;
@@ -20,7 +21,7 @@ cookieRouter.get("/:key", (request, response) => {
 cookieRouter.post("/", (request, response) => {
   const { key, value, maxAge } = request.body;
   response
-    .cookie(key, value, { maxAge, signed: true })
+    .cookie(key, value, { maxAge: maxAge, signed: true })
     .send({ key, value, maxAge });
 });
 
