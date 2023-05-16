@@ -27,5 +27,5 @@ ProductsWebSocket.on("connection", (client) => {
     console.log("Client disconnected");
   });
 });
-
+  
 export default ProductsWebSocket;

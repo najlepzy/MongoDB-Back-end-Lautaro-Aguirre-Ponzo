@@ -1,5 +1,4 @@
 const auth = (request, response, next) => {
-  console.log(request.session);
   if (request.session && request.session.admin) {
     return next();
   }
