@@ -3,7 +3,6 @@ import { Router } from "express";
 import fileStore from "session-file-store";
 import auth from "./auth.js";
 import mongoStore from "connect-mongo";
-import bcrypt from "bcrypt";
 import { list, deleteOne, getOne, save, update } from "../controllers/userController.js"
 
   

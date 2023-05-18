@@ -1,13 +1,14 @@
 import express from "express";
 import session from "express-session"; 
 import { Router } from "express";
-import "../Dao/models/UserSchema.js";
+import passport from "passport";
 import fileStore from "session-file-store";
-import auth from "./auth.js";
 import mongoStore from "connect-mongo"; 
-import {login, logout, signup} from "../controllers/sessionController.js"
+import auth from "./auth.js";
+import "../Dao/models/UserSchema.js";
+import {forgetPassword, login, login2, logout, signup, register, fail} from "../controllers/sessionController.js"
 
-const sessionRouter = express();
+const sessionRouter = Router();
 
   sessionRouter.use(
     session({
@@ -18,8 +19,12 @@ const sessionRouter = express();
     })
   );
   
-sessionRouter.post("/login", login);
-sessionRouter.post("/logout", logout);
-sessionRouter.post("/signup", signup);
-
-export default sessionRouter;
+  sessionRouter.post('/login', login);
+  sessionRouter.post('/login2', passport.authenticate('login2', {failureRedirect: '/api/sessions/fail'}), login2);
+  sessionRouter.post('/logout', logout);
+  sessionRouter.post('/signup', signup);
+  sessionRouter.post('/register', passport.authenticate('register', {failureRedirect: '/api/sessions/fail'}), register);
+  sessionRouter.get('/fail', fail);
+  sessionRouter.post('/forget-password', forgetPassword);
+  
+  export default sessionRouter;

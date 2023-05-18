@@ -1,45 +1,49 @@
 import UserManager from "../Dao/UserManager.js";
 
+export const list = async  (req, res) =>
+{
+    const { limit, page } = req.query;
+    const manager = new UserManager();
 
-export const list = async (request, response) => {
-  const { limit, page } = request.query;
-  const manager = new UserManager();
+    const users = await manager.paginate({ limit, page });
 
-  const users = await manager.paginate({ limit, page });
-
-  response.send({ status: "success", users: users.docs, ...users, docs: undefined });
+    res.send({ status: 'success', users: users.docs, ...users, docs: undefined });
 };
 
-export const getOne = async (request, response) => {
-  const { id } = request.params;
+export const getOne = async (req, res) =>
+{
+    const { id } = req.params;
 
-  const manager = new UserManager();
-  const user = await manager.getOne(id);
+    const manager = new UserManager();
+    const user = await manager.getOne(id);
 
-  response.send({ status: "success", user });
+    res.send({ status: 'success', user });
 };
 
-export const save = async (request, response) => {
+export const save = async (req, res) =>
+{
   const manager = new UserManager();
-  const user = await manager.create(request.body);
+  const user = await manager.create(req.body);
 
-  response.send({ status: "success", user, message: "User created." });
+  res.send({ status: 'success', user, message: 'User created.' })
 };
 
-export const update = async (request, response) => {
-  const { id } = request.params;
+export const update = async (req, res) =>
+{
+  const { id } = req.params;
 
   const manager = new UserManager();
-  const result = await manager.updateOne(id, request.body);
+  const result = await manager.updateOne(id, req.body);
 
-  response.send({ status: "success", result, message: "User updated." });
+  res.send({ status: 'success', result, message: 'User updated.' })
 };
 
-export const deleteOne = async (request, response) => {
-  const { id } = request.params;
+export const deleteOne = async (req, res) =>
+{
+  const { id } = req.params;
 
   const manager = new UserManager();
   await manager.deleteOne(id);
 
-  response.send({ status: "success", message: "User deleted." });
+  res.send({ status: 'success', message: 'User deleted.' })
 };
