@@ -1,49 +1,49 @@
-import UserManager from "../Dao/UserManager.js";
+import UserManager from "../Dao/userManager.js";
 
-export const list = async  (req, res) =>
+export const list = async  (requestuest, response) =>
 {
-    const { limit, page } = req.query;
+    const { limit, page } = request.query;
     const manager = new UserManager();
 
     const users = await manager.paginate({ limit, page });
 
-    res.send({ status: 'success', users: users.docs, ...users, docs: undefined });
+    response.send({ status: 'success', users: users.docs, ...users, docs: undefined });
 };
 
-export const getOne = async (req, res) =>
+export const getOne = async (request, response) =>
 {
-    const { id } = req.params;
+    const { id } = request.params;
 
     const manager = new UserManager();
     const user = await manager.getOne(id);
 
-    res.send({ status: 'success', user });
+    response.send({ status: 'success', user });
 };
 
-export const save = async (req, res) =>
+export const save = async (request, response) =>
 {
   const manager = new UserManager();
-  const user = await manager.create(req.body);
+  const user = await manager.create(request.body);
 
-  res.send({ status: 'success', user, message: 'User created.' })
+  response.send({ status: 'success', user, message: 'User created.' })
 };
 
-export const update = async (req, res) =>
+export const update = async (request, response) =>
 {
-  const { id } = req.params;
+  const { id } = request.params;
 
   const manager = new UserManager();
-  const result = await manager.updateOne(id, req.body);
+  const responseult = await manager.updateOne(id, request.body);
 
-  res.send({ status: 'success', result, message: 'User updated.' })
+  response.send({ status: 'success', responseult, message: 'User updated.' })
 };
 
-export const deleteOne = async (req, res) =>
+export const deleteOne = async (request, response) =>
 {
-  const { id } = req.params;
+  const { id } = request.params;
 
   const manager = new UserManager();
   await manager.deleteOne(id);
 
-  res.send({ status: 'success', message: 'User deleted.' })
+  response.send({ status: 'success', message: 'User deleted.' })
 };

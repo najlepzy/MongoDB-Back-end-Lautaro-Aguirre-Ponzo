@@ -1,8 +1,8 @@
 import UserManager from "../Dao/userManager.js";
 import { createHash, isValidPassword } from "../utils/bcrypt.js";
 
-export const login = async (req, res) => {
-  const { email, password } = req.body;
+export const login = async (request, response) => {
+  const { email, password } = request.body;
 
   if (!email && !password) {
     throw new Error("Email and Password invalid format.");
@@ -13,58 +13,62 @@ export const login = async (req, res) => {
   const isHashedPassword = await isValidPassword(password, user.password);
 
   if (!isHashedPassword) {
-    return res.status(401).send({ message: "Login failed, invalid password." });
+    return response
+      .status(401)
+      .send({ message: "Login failed, invalid password." });
   }
 
-  req.session.user = { email };
+  request.session.user = { email };
 
-  res.send({ message: "Login success!" });
+  response.send({ message: "Login success!" });
 };
 
-export const login2 = async (req, res) => {
-  if (!req.user)
-    return res
+export const login2 = async (request, response) => {
+  if (!request.user)
+    return response
       .status(400)
       .send({ status: "error", message: "Invalid credentials" });
 
-  req.session.user = {
-    firstName: req.user.firstName,
-    lastName: req.user.lastName,
-    email: req.user.email,
+  request.session.user = {
+    firstName: request.user.firstName,
+    lastName: request.user.lastName,
+    email: request.user.email,
   };
 
-  res.send({ status: "success", message: "Login success" });
+  response.send({ status: "success", message: "Login success" });
 };
 
-export const logout = async (req, res) => {
-  req.session.destroy((err) => {
+export const logout = async (request, response) => {
+  request.session.destroy((err) => {
     if (!err) {
-      return res.send({ message: "Logout ok!" });
+      return response.send({ message: "Logout ok!" });
     }
 
-    res.send({ message: "Logout error!", body: err });
+    response.send({ message: "Logout error!", body: err });
   });
 };
 
-export const signup = async (req, res) => {
+export const signup = async (request, response) => {
   const manager = new UserManager();
 
   const dto = {
-    ...req.body,
-    password: await createHash(req.body.password, 10),
+    ...request.body,
+    password: await createHash(request.body.password, 10),
   };
 
   const user = await manager.create(dto);
 
-  res.status(201).send({ status: "success", user, message: "User created." });
+  response
+    .status(201)
+    .send({ status: "success", user, message: "User created." });
 };
 
-export const register = async (req, res) => {
-  res.send({ status: "success", message: "User registered" });
+export const register = async (request, response) => {
+  response.send({ status: "success", message: "User registered" });
 };
 
-export const forgetPassword = async (req, res) => {
-  const { email, password } = req.body;
+export const forgetPassword = async (request, response) => {
+  const { email, password } = request.body;
   const manager = new UserManager();
 
   const dto = {
@@ -74,12 +78,12 @@ export const forgetPassword = async (req, res) => {
 
   const user = await manager.forgetPassword(dto);
 
-  res
+  response
     .status(200)
     .send({ status: "success", user, message: "User change password." });
 };
 
-export const fail = async (req, res) => {
+export const fail = async (request, response) => {
   console.log("Failed strategy");
-  res.status(400).send({ error: "Failed" });
+  response.status(400).send({ error: "Failed" });
 };
