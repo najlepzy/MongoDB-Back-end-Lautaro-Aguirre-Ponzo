@@ -3,7 +3,6 @@ import passport from "passport";
 import session from "express-session"
 import fileStore from "session-file-store";
 import mongoStore from "connect-mongo";
-import auth from "../middlewares/auth.js";
 import "../Dao/models/UserSchema.js";
 import {
   forgetPassword,
