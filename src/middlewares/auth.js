@@ -1,5 +1,5 @@
 const auth = (request, response, next) => {
-  if (req.session?.user?.email) {
+  if (request.session?.user?.email) {
     return next();
   }
   return response.status(401).send({ message: "Authentication Error!" });

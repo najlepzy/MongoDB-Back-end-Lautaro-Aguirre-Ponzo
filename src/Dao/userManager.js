@@ -33,7 +33,7 @@ class UserManager
   {
     return this.userDao.updateOne(id, data);
   }
-
+    
   async deleteOne(id)
   {
     return this.userDao.deleteOne(id);

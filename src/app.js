@@ -7,6 +7,8 @@ import ProductsRouter from "./routes/ProductsRouter.js";
 import cookieRouter from "./routes/CookieRouter.js";
 import userRouter from "./routes/userRouter.js";
 import sessionRouter from "./routes/SessionRouter.js";
+import errorHandler from "./utils/errorHandler.js";
+import logger from "./utils/logger.js";
 import handlebars from "express-handlebars";
 
 
@@ -38,10 +40,14 @@ app.use("/home", ProductViews);
 app.use("/api/cookies", cookieRouter);
 /* CookieParser */
 
+/* logger */
+app.use(logger)
+/* logger */
 
 /* Session */
 app.use("/api/sessions", sessionRouter);
 /* Session */
+app.use(errorHandler);
 
 const connectionInstance = app.listen(port, () => {
   console.log(`Server is running on port 8081 ${port}`);

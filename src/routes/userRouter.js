@@ -1,7 +1,7 @@
 import express from "express";
 import { Router } from "express";
 import fileStore from "session-file-store";
-import auth from "./auth.js";
+import auth from "../middlewares/auth.js";
 import mongoStore from "connect-mongo";
 import { list, deleteOne, getOne, save, update } from "../controllers/userController.js"
 
