@@ -1,6 +1,4 @@
 import cookieParser from "cookie-parser";
-import express from "express";
-import session from "express-session";
 import { Router } from "express";
 
 const encript = process.env.encript;

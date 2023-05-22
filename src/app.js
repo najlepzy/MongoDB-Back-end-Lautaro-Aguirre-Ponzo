@@ -46,6 +46,7 @@ app.use(logger)
 
 /* Session */
 app.use("/api/sessions", sessionRouter);
+app.use("/api/users", userRouter);
 /* Session */
 app.use(errorHandler);
 
