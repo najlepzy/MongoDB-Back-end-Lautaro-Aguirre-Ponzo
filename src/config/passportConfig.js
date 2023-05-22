@@ -5,11 +5,11 @@ import {createHash, isValidPassword} from "../utils/bcrypt.js"
 
 const LocalStrategy = local.Strategy;
 
-const register = new LocalStrategy({passReqToCallback: true, usernameField: 'email'}, async (req, username, password, done)=> {
+const register = new LocalStrategy({passrequestToCallback: true, usernameField: 'email'}, async (request, username, password, done)=> {
     try
     {
       const manager = new UserManager();
-      let user = await manager.getOneByEmail(req.body.email);
+      let user = await manager.getOneByEmail(request.body.email);
 
       if(user.id)
       {
@@ -18,16 +18,16 @@ const register = new LocalStrategy({passReqToCallback: true, usernameField: 'ema
       }
 
       const dto = {
-        ...req.body,
-        password: await createHash(req.body.password)
+        ...request.body,
+        password: await createHash(request.body.password)
       }
-
+      
       let result = await manager.create(dto);
       return done(null, result);
     }
     catch (e)
     {
-        done('Error al obtener el usuario: ' + e);
+        done('Error getting user  : ' + e);
     }
 });
 

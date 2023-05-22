@@ -1,6 +1,6 @@
-import session from "express-session"
 import { Router } from "express";
 import passport from "passport";
+import session from "express-session"
 import fileStore from "session-file-store";
 import mongoStore from "connect-mongo";
 import auth from "../middlewares/auth.js";
@@ -25,20 +25,7 @@ sessionRouter.use(
     saveUninitialized: false,
   })
 );
-sessionRouter.get(
-  "/github",
-  passport.authenticate("github", { scope: ["user:email"] }),
-  async (request, response) => {}
-);
-sessionRouter.get(
-  "/github-callback",
-  passport.authenticate("github", { failureRedirect: "/login" }),
-  async (request, response) => {
-    request.session.user = request.user;
-    console.log(request.user);
-    response.redirect("/");
-  }
-);
+
 sessionRouter.get("/fail", fail);
 
 sessionRouter.post("/login", login);

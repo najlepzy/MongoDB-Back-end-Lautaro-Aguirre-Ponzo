@@ -25,7 +25,7 @@ export const getOne = async (request, response, next) => {
     await idValidation.parseAsync(request.params);
 
     const { id } = request.params;
-
+    
     const manager = new UserManager();
     const user = await manager.getOne(id);
 
