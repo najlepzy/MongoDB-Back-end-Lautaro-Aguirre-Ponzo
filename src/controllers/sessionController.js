@@ -1,5 +1,5 @@
 import UserManager from "../Dao/userManager.js";
-import { createHash, isValidPassword } from "../utils/bcrypt.js";
+import { createHash, isValidPassword, generateToken } from "../utils/bcrypt.js";
 
 export const login = async (request, response) => {
   const { email, password } = request.body;
@@ -18,9 +18,14 @@ export const login = async (request, response) => {
       .send({ message: "Login failed, invalid password." });
   }
 
-  request.session.user = { email };
+  const accessToken = await generateToken(user);
 
-  response.send({ message: "Login success!" });
+  response
+    .cookie("accessToken", accessToken, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+    })
+    .send({ message: "Login success!" });
 };
 
 export const login2 = async (request, response) => {

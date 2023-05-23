@@ -47,18 +47,18 @@ export const save = async (request, response, next) => {
 };
 
 export const update = async (request, response, next) => {
-  try {
-    await userUpdateValidation.parseAsync({ ...request.params, ...request.body });
+   try {
+     await userValidation.parseAsync({ ...request.params, ...request.body });
 
-    const { id } = request.params;
+     const { id } = request.params;
 
-    const manager = new UserManager();
-    const responseult = await manager.updateOne(id, request.body);
+     const manager = new UserManager();
+     const result = await manager.updateOne(id, request.body);
 
-    response.send({ status: "success", responseult, message: "User updated." });
-  } catch (e) {
-    next(e);
-  }
+     response.send({ status: "success", result, message: "User updated." });
+   } catch (e) {
+     next(e);
+   }
 };
 
 export const deleteOne = async (request, response, next) => {

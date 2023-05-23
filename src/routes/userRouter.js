@@ -1,6 +1,5 @@
 import express from "express";
 import { Router } from "express";
-import fileStore from "session-file-store";
 import auth from "../middlewares/auth.js";
 import { list, deleteOne, getOne, save, update } from "../controllers/userController.js"
 
