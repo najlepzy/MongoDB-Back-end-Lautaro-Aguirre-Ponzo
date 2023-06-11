@@ -1,5 +1,5 @@
   import express from "express";
-  import CartManager from "../Dao/CartManager.js";
+  import CartManager from "../../data/Dao/CartManager.js";
 
   const cartEndPoint = express.Router();
   const cartManager = new CartManager("data/carts.json");

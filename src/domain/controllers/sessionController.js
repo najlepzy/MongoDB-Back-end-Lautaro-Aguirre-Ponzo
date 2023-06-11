@@ -1,5 +1,5 @@
-import UserManager from "../Dao/userManager.js";
-import { createHash, isValidPassword, generateToken } from "../utils/bcrypt.js";
+import UserManager from "../../data/Dao/userManager.js";
+import { createHash, isValidPassword, generateToken } from "../../utils/bcrypt.js";
 
 export const login = async (request, response) => {
   const { email, password } = request.body;

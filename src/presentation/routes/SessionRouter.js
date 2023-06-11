@@ -3,7 +3,7 @@ import passport from "passport";
 import session from "express-session"
 import fileStore from "session-file-store";
 import mongoStore from "connect-mongo";
-import "../Dao/models/UserSchema.js";
+import "../../data/Dao/models/UserSchema.js";
 import {
   forgetPassword,
   login,
@@ -12,7 +12,7 @@ import {
   signup,
   register,
   fail,
-} from "../controllers/sessionController.js";
+} from "../../domain/controllers/sessionController.js";
 
 const sessionRouter = Router();
 

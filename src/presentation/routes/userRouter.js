@@ -1,7 +1,7 @@
 import express from "express";
 import { Router } from "express";
 import auth from "../middlewares/auth.js";
-import { list, deleteOne, getOne, save, update } from "../controllers/userController.js"
+import { list, deleteOne, getOne, save, update } from "../../domain/controllers/userController.js"
 
   
 const userRouter = Router();

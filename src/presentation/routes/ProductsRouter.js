@@ -1,7 +1,7 @@
 import { Router } from "express";
 import mongoose from "mongoose";
-import productSchema from "../Dao/models/ProductSchema.js";
-import ProductManager from "../Dao/ProductManager.js";
+import productSchema from "../../data/Dao/models/ProductSchema.js";
+import ProductManager from "../../data/Dao/ProductManager.js";
 
 const mongoRouter = Router();
 const productManager = new ProductManager();

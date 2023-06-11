@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import mongoose from "../../core/Connection.js";
+import mongoose from "../../../core/Connection.js";
 import mongoosePaginate from "mongoose-paginate-v2";
 
   const userCollection = "users";  

@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import ProductManager from "./src/Dao/ProductManager.js";
+import ProductManager from "./src/data/Dao/ProductManager.js";
 import connectionInstance from "./src/app.js";
 
 const ProductsWebSocket = new Server(connectionInstance);

@@ -1,4 +1,4 @@
-import UserManager from "../Dao/userManager.js";
+import UserManager from "../../data/Dao/userManager.js";
 import idValidation from "../validation/idValidation.js";
 import userValidation from "../validation/userValidation.js";
 
