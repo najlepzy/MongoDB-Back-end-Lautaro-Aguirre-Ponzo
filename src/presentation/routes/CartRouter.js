@@ -1,18 +1,40 @@
   import express from "express";
   import CartManager from "../../data/Dao/CartManager.js";
 
-  const cartEndPoint = express.Router();
-  const cartManager = new CartManager("data/carts.json");
+const cartRouter = express.Router();
+const cartManager = new CartManager("data/carts.json");
 
-  cartEndPoint.get("/", async (request, response) => {
-    response.send(await cartManager.getCarts());
-  });
-  cartEndPoint.post("/", async (request,response) => {
-    response.send(cartManager.addCart());
-  });
-  cartEndPoint.post("/:cartId/products/:pid", async (request, response) => {
-    cartManager.addProductToCart(request.params.cartId, (request.params.pid));
-    response.send(true);
-  });
+cartRouter.get("/", async (req, res) => {
+  res.send(await cartManager.getCarts());
+});
 
-  export default cartEndPoint;
+cartRouter.post("/", async (req, res) => {
+  res.send(await cartManager.addCart());
+});
+
+cartRouter.post("/:cid/products/:pid", async (req, res) => {
+  const cartId = req.params.cid;
+  const productId = req.params.pid;
+
+  const result = await cartManager.addProductToCart(cartId, productId);
+
+  if (!result) {
+    return res.status(500).json({ message: "Failed to add product to cart" });
+  }
+
+  res.send(true);
+});
+
+cartRouter.post("/:cid/purchase", async (req, res) => {
+  const cartId = req.params.cid;
+
+  const result = await cartManager.completePurchase(cartId);
+
+  if (!result) {
+    return res.status(500).json({ message: "Failed to complete purchase" });
+  }
+
+  res.status(200).json({ message: "Purchase completed", cart: result });
+});
+
+export default cartRouter;
